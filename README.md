@@ -18,7 +18,8 @@ Knowledge distillation experiment: compressing BERT-base into DistilBERT for sen
 
 ## Setup
 ```bash
-cd /Users/syed/Desktop/mini-distillation-linkedin-demo
+git clone https://github.com/SyedAkramaIrshad/distillbert-sst2-benchmark.git
+cd distillbert-sst2-benchmark
 python3 -m venv .venv
 source .venv/bin/activate
 pip install -e '.[dev]'
