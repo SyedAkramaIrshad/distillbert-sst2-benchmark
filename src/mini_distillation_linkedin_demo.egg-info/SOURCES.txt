@@ -1,0 +1,12 @@
+README.md
+pyproject.toml
+src/mini_distill/__init__.py
+src/mini_distill/losses.py
+src/mini_distill/metrics.py
+src/mini_distillation_linkedin_demo.egg-info/PKG-INFO
+src/mini_distillation_linkedin_demo.egg-info/SOURCES.txt
+src/mini_distillation_linkedin_demo.egg-info/dependency_links.txt
+src/mini_distillation_linkedin_demo.egg-info/requires.txt
+src/mini_distillation_linkedin_demo.egg-info/top_level.txt
+tests/test_losses.py
+tests/test_metrics.py

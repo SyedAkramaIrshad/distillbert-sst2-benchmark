@@ -1,0 +1,78 @@
+Metadata-Version: 2.4
+Name: mini-distillation-linkedin-demo
+Version: 0.1.0
+Summary: Tiny, explainable transformer distillation demo
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: torch>=2.2.0
+Requires-Dist: transformers>=4.45.0
+Requires-Dist: datasets>=2.20.0
+Requires-Dist: accelerate>=0.33.0
+Requires-Dist: scikit-learn>=1.4.0
+Requires-Dist: tqdm>=4.66.0
+Requires-Dist: protobuf>=5.0.0
+Requires-Dist: sentencepiece>=0.2.0
+Provides-Extra: dev
+Requires-Dist: pytest>=8.2.0; extra == "dev"
+
+# Mini Transformer Distillation Demo (LinkedIn-ready)
+
+Tiny, reproducible demo of **knowledge distillation**.
+
+## Stack
+- Teacher: `textattack/bert-base-uncased-SST-2`
+- Student: `prajjwal1/bert-tiny`
+- Dataset: GLUE SST-2
+- Loss: `alpha * KD + (1-alpha) * CE`
+
+## Project structure
+- `src/mini_distill/losses.py` — reusable KD + total loss helpers
+- `src/mini_distill/metrics.py` — model size helpers
+- `scripts/distill_sst2_tiny.py` — training script
+- `scripts/benchmark_models.py` — parent vs base vs distilled accuracy + size report
+- `tests/` — unit tests
+- `pyproject.toml` — package + pytest config
+
+## Setup
+```bash
+cd /Users/syed/Desktop/mini-distillation-linkedin-demo
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -e '.[dev]'
+```
+
+## Run tests
+```bash
+pytest -q
+```
+
+## Run mini distillation training
+```bash
+python scripts/distill_sst2_tiny.py \
+  --epochs 2 \
+  --train-size 2000 \
+  --val-size 500 \
+  --output-dir ./artifacts/distilled-bert-tiny-sst2
+```
+
+## Benchmark parent vs distilled (accuracy + size)
+```bash
+python scripts/benchmark_models.py \
+  --max-samples 500 \
+  --distilled-model-path ./artifacts/distilled-bert-tiny-sst2 \
+  --out ./artifacts/benchmark_report.json
+```
+
+Report includes:
+- parent/teacher accuracy
+- base student accuracy
+- distilled student accuracy
+- parameter count
+- approximate fp32 parameter size (MB)
+- local disk size for distilled folder
+- deltas vs parent
+
+## LinkedIn positioning (safe wording)
+- Distillation is a standard/legit model compression method.
+- The controversy is about **alleged unauthorized extraction** from proprietary APIs at scale.
+- This demo uses open models and open dataset for educational purposes.
