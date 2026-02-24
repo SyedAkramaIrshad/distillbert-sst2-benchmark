@@ -1,6 +1,6 @@
-# Mini Transformer Distillation Demo (LinkedIn-ready)
+# DistilBERT SST-2 Benchmark
 
-Tiny, reproducible demo of **knowledge distillation**.
+Knowledge distillation experiment: compressing BERT-base into DistilBERT for sentiment analysis.
 
 ## Stack
 - Teacher: `textattack/bert-base-uncased-SST-2`
